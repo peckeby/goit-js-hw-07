@@ -5,9 +5,6 @@ const gallUrl = [...document.querySelectorAll(".gallery__link")];
 
 const gallImgR = [...document.querySelectorAll(".gallery__image")];
 
-// console.log(gallImgR);
-
-
 const setAttributes = (el, attrs) => Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
 
 const getUrl = () =>
@@ -27,13 +24,17 @@ const getUrl = () =>
 
 getUrl();
 
-
 const gallery = document.querySelector(".gallery");
 
 const openFullSize = event => {
 event.preventDefault();
 const {target} = event;
-const instance = basicLightbox.create(`<img src="${target.dataset.source}" width="800" height="600">`).show();
-}
+const instance = basicLightbox.create(`<img src="${target.dataset.source}" width="800" height="600">`, {
+    closable: false});
+    instance.show();
+document.addEventListener ("keydown", event => {
+        if(event.key === "Escape") {
+         instance.close()}});
+};
 
 gallery.addEventListener("click", openFullSize);
