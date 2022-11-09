@@ -1,13 +1,13 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-const galleryItems = [...document.querySelectorAll(".gallery__item")];
+const galleryItemsElements = [...document.querySelectorAll(".gallery__item")];
 
 const setAttributes = (el, attrs) => Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
 
-galleryItems.forEach((item, index) => {
-  setAttributes(item.firstElementChild, { src: `${item.preview}`, alt: `${item.description}`}));
-  item.setAttribute('href', `${item.original}`) 
+galleryItemsElements.forEach((item, index) => {
+  setAttributes(item.firstElementChild, { src: `${galleryItems[index].preview}`, alt: `${galleryItems[index].description}`}));
+  item.setAttribute('href', `${galleryItems[index].original}`) 
 });
 
 const gallery = new SimpleLightbox('.gallery .gallery__item', {
