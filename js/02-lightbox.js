@@ -6,7 +6,7 @@ const galleryItemsElements = [...document.querySelectorAll(".gallery__item")];
 const setAttributes = (el, attrs) => Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
 
 galleryItemsElements.forEach((item, index) => {
-  setAttributes(item.firstElementChild, { src: `${galleryItems[index].preview}`, alt: `${galleryItems[index].description}`}));
+  setAttributes(item.firstElementChild, { src: `${galleryItems[index].preview}`, alt: `${galleryItems[index].description}`});
   item.setAttribute('href', `${galleryItems[index].original}`) 
 });
 
