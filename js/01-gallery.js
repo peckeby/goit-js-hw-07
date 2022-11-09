@@ -19,8 +19,9 @@ gallery.insertAdjacentHTML("afterbegin", galleryLink);
 
 const openFullSize = event => {
 event.preventDefault();
+
 const {target} = event;
-// const pressEsc = event => event.key !== "Escape" ? true : false;
+
 const instance = basicLightbox.create(`<img src="${target.dataset.source}" width="800" height="600">`, {
     closable: false,
 
@@ -28,14 +29,16 @@ const instance = basicLightbox.create(`<img src="${target.dataset.source}" width
         document.addEventListener("keydown", (event) => {
             if(event.key === "Escape") {
             instance.close()}})
-        },
+            },
 
     onClose: () => {
-        document.removeEventListener("keydown", event)},
-    }
+        document.removeEventListener("keydown", event)
+            },
+        }
     );
+
     instance.show();
-    };
+};
 
 
 gallery.addEventListener("click", openFullSize);
