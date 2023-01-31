@@ -1,17 +1,20 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
 
-const galleryItemsElements = [...document.querySelectorAll(".gallery__item")];
+const gallery = document.querySelector(".gallery");
+const galleryLink = galleryItems
+.map((item) => `<a class="gallery__item" href="${item.original}">
+<img
+      class="gallery__image"
+      src="${item.preview}"
+      alt="${item.description}"
+    />
+  </a>`)
+.join("");
 
-const setAttributes = (el, attrs) => Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
+gallery.insertAdjacentHTML("afterbegin", galleryLink);
 
-galleryItemsElements.forEach((item, index) => {
-  setAttributes(item.firstElementChild, { src: `${galleryItems[index].preview}`, alt: `${galleryItems[index].description}`});
-  item.setAttribute('href', `${galleryItems[index].original}`) 
-});
-
-const gallery = new SimpleLightbox('.gallery .gallery__item', {
-  captionsData: 'alt',
-  captionPosition: 'bottom',
-  captionDelay: '250ms',
+let galleryN = new SimpleLightbox('.gallery .gallery__item', {
+    captionsData: 'alt',
+    captionPosition: 'bottom',
+    captionDelay: '250ms',
 });
